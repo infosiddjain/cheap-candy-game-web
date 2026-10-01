@@ -29,7 +29,7 @@ const SECTIONS = [
   {
     icon: mdiWebOff,
     title: "Internet and Third Parties",
-    body: "The game works fully offline. We do not use third-party services that collect data. If you choose to contact us by email, your email app sends the message and we use your address only to reply.",
+    body: "The game works fully offline and uses no third-party services that collect data. If you send a message through the contact form on our website, your name, email and message are delivered to us by our form provider (Hub Form) and used only to reply to you.",
   },
   {
     icon: mdiAccountChildOutline,

@@ -3,7 +3,7 @@ import { Roboto } from "next/font/google";
 import { Backdrop } from "@/components/Backdrop";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { APP_NAME, DEVELOPER } from "@/lib/site";
+import { APP_NAME, DEVELOPER, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 // Roboto is what the app renders with on Android, so the type matches
@@ -14,6 +14,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${APP_NAME} · Match-3 Puzzle Game`,
     template: `%s · ${APP_NAME}`,

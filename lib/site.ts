@@ -1,5 +1,6 @@
 /** Shared site content. Keep in sync with cheapcandy/src/config.ts. */
 export const APP_NAME = "Cheap Candy";
+export const SITE_URL = "https://cheap-candy-game-web.vercel.app";
 export const TAGLINE = "Match. Blast. Repeat.";
 export const LEVEL_COUNT = 100;
 export const SUPPORT_EMAIL = "infosiddjain@gmail.com";
