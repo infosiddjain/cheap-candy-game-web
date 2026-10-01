@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Same palette as the Cheap Candy app (cheapcandy/src/theme.ts) */
+@theme {
+  --color-bg: #140b2e;
+  --color-bg-deep: #0c061c;
+  --color-card: #23154a;
+  --color-surface: rgb(255 255 255 / 0.07);
+  --color-surface-strong: rgb(255 255 255 / 0.12);
+  --color-line: rgb(255 255 255 / 0.14);
+  --color-ink: #ffffff;
+  --color-dim: rgb(255 255 255 / 0.68);
+  --color-faint: rgb(255 255 255 / 0.4);
+  --color-primary: #ff4f9a;
+  --color-primary-dark: #d63579;
+  --color-accent: #7c5cff;
+  --color-accent-dark: #5b3fe0;
+  --color-gold: #ffc83d;
+  --color-success: #2bd9a0;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-roboto), system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-float: float 4.4s ease-in-out infinite;
+  --animate-bob: bob 3.2s ease-in-out infinite;
+  --animate-drift: drift 14s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 1.8s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50% { transform: translateY(-18px) rotate(10deg); }
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-9px) rotate(4deg); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(var(--dx, 40px), var(--dy, 30px)); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+/* Chunky game buttons with a darker "lip", like the app */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.75rem;
+  border-radius: 1.5rem;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 50% 0;
+    background: rgb(255 255 255 / 0.14);
+    pointer-events: none;
+  }
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: translateY(3px) scale(0.98);
+  }
+}
+@utility btn-primary {
+  background: var(--color-primary);
+  box-shadow: 0 5px 0 var(--color-primary-dark);
+}
+@utility btn-accent {
+  background: var(--color-accent);
+  box-shadow: 0 5px 0 var(--color-accent-dark);
+}
+@utility btn-ghost {
+  background: var(--color-surface-strong);
+  box-shadow: 0 5px 0 rgb(0 0 0 / 0.25);
+}
+
+@utility card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1.5rem;
+}
+
+@utility title-shadow-pink {
+  text-shadow: 0 5px 0 var(--color-primary-dark);
+}
+@utility title-shadow-gold {
+  text-shadow: 0 5px 0 #b7791f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
